@@ -1,0 +1,108 @@
+# Product Requirement Document (PRD)
+## Project Sifta: Niche-Disruptive Blue-Collar HRIS for Indonesia
+
+---
+
+### 1. Document Control
+| Detail | Value |
+| :--- | :--- |
+| **Project Name** | Sifta (Sifta.id) |
+| **Target Market** | Indonesia (F&B, Retail, Light Manufacturing, Warehousing) |
+| **Author** | Antigravity AI |
+| **Status** | Draft (Review Ready) |
+| **Date** | June 26, 2026 |
+
+---
+
+### 2. Introduction & Product Vision
+
+#### Why build Sifta when there are established competitors (Mekari, Talenta, Sleekr)?
+In the Indonesian SaaS ecosystem, major HRIS platforms are built for **white-collar office workers**. They assume employees sit at desks, have corporate email addresses, use high-end smartphones, work standard 9-to-5 schedules, and receive fixed monthly salaries. 
+
+This leaves a massive gap in the market. **Blue-collar sectors (F&B, Retail, Warehousing, Factories)** operate in a fundamentally different reality:
+*   **High Employee Turnover:** Frequently replacing staff means onboarding must take 5 minutes, not days.
+*   **Complex Shift Rosterings:** Work hours fluctuate across morning, night, weekend, and overtime shifts, often split across multiple branches.
+*   **Fraud Vulnerability:** Workers frequently bypass geofencing using mock locations (Fake GPS) to mark attendance.
+*   **Financial Urgency:** Daily wage or weekly payout structures are common. Workers often need salary advances (kasbon) to cover daily emergencies.
+*   **Device Constraints:** Low-spec Android devices with full storage are the norm.
+
+**Sifta's Core Value Proposition:**
+> *"Manage shifts, secure attendance, and process payroll for field workers in one click—without Excel formulas, fake GPS drama, or manual cash advances."*
+
+---
+
+### 3. Competitor Gap Analysis (The Sifta Moat)
+
+Sifta does not try to out-feature enterprise giants. Instead, we win by being specialized, fast, and simple:
+
+| Strategic Dimension | Competitor (Generalist Enterprise HRIS) | Sifta (Niche Blue-Collar HRIS) |
+| :--- | :--- | :--- |
+| **Target Niche** | Corporate Offices / White-Collar | F&B, Retail, Light Manufacturing, Franchisees |
+| **User Experience (UX)** | Heavy, multi-layered dashboard requiring training | 1-click attendance on mobile, drag-and-drop shift planner on web |
+| **Anti-Fraud Security** | Standard GPS validation (easily spoofed) | Native OS-level Fake GPS block + Facial Recognition |
+| **Shift Management** | Fixed/Simple shifts; hard to change dynamically | Fluid multi-branch rosters with instant WhatsApp notifications |
+| **Payroll Model** | Standard monthly payroll | Micro-payroll: hourly/daily base, late-fines per minute, daily EWA |
+| **Earned Wage Access (EWA)** | Rarely integrated or requires 3rd party fintech | Integrated direct instant-cashout (Kasbon) |
+| **Customer Support** | Ticket-based email or automated bot routing | WhatsApp Business support (Direct human-in-the-loop) |
+
+---
+
+### 4. Branding & Design System
+
+Sifta's visual design communicates **efficiency, transparency, and approachability**. 
+
+#### 4.1. Branding Logo
+The modern vector logo representing Sifta, reflecting scheduling connectivity (S-loop) and time efficiency.
+
+#### 4.2. Color Palette
+To maintain a professional yet modern look, we employ a clean slate background with sharp accents:
+
+*   **Primary Navy (#1B263B):** Trustworthy, clean structural color. Used for sidebar navigation and headings.
+*   **Primary Teal (#00ADB5):** Brand highlight. Used for primary buttons, active states, and calendar indicators.
+*   **Success Emerald (#06D6A0):** Used for "Checked In" status, approved cashouts, and positive trends.
+*   **Alert Amber (#FFD166):** Used for "Late" markers, pending approvals, and warning notifications.
+*   **Neutral Dark (#222831):** Body text and secondary interfaces.
+*   **Neutral Light (#F8F9FA):** Dashboard canvas background.
+
+#### 4.3. Design Principles
+*   **Mobile-First for Workers:** UI consists of large, fat touch targets. Avoid dropdown menus for inputs; use clear selector cards.
+*   **Admin Dashboard Simplicity:** Single-page dashboard highlighting only three numbers: *Who is working now? Who is late today? What is the current daily payroll run rate?*
+
+---
+
+### 5. Technical & Deployment Strategy
+
+To launch quickly, keep costs low, and maximize application stability, we utilize a **Hybrid Split Architecture**.
+
+1.  **For Owners/Admins:** A responsive **React / Next.js Web App** deployed on Vercel or Cloudflare Pages.
+2.  **For Employees:** A lightweight **React Native / Flutter Android App** distributed initially as an **APK download**.
+
+---
+
+### 6. Functional Specifications (MVP Core Pillars)
+
+#### Pillar 1: Smart Anti-Fraud Attendance
+*   **Geofencing Lock:** Employee must be within 20 meters of the branch.
+*   **Anti-Fake GPS Engine:** Query native Android mock location flags.
+*   **Facial Recognition (Photo Verification):** Captures a quick selfie during clock-in.
+*   **Offline Mode:** Store check-in timestamp and photo securely in local storage.
+
+#### Pillar 2: Dynamic Shift & Roster Scheduler
+*   **Visual Shift Scheduler:** Calendar grid with drag-and-drop.
+*   **Multi-Branch Sync:** Assign employees to different branches without overlap.
+*   **WhatsApp Notification Push:** Blast out weekly shift rosters directly to employee WhatsApp.
+
+#### Pillar 3: Micro-Payroll & Instant Cash-out (EWA)
+*   **Flexible Pay Calculations:** Hourly rates, shift rates, fixed monthly.
+*   **Deductions & Incentives:** Auto-calculate late deductions and daily bonuses.
+*   **Earned Wage Access (EWA / Kasbon Instan):** Request instant cashout of up to 50% of earned wages.
+
+---
+
+### 7. Database Entity Relationship Model (ERD Outline)
+Entities: Company, Branch, Employee, ShiftSchedule, Attendance, CashoutRequest.
+
+---
+
+### 8. Release Roadmap (Phased Development)
+Phase 1: Foundation (Roster). Phase 2: Attendance Security. Phase 3: Financial Integration.

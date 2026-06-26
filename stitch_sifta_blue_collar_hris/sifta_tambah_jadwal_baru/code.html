@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sifta - Kelola Shift</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f9f9ff;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .custom-card {
+            border: 1px solid #DFE1E6;
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            transition: border-color 0.2s ease;
+        }
+        .custom-card:focus-within {
+            border-color: #003d9b;
+            border-width: 2px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#041b3c",
+                        "surface-container": "#e8edff",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#0c56d0",
+                        "outline-variant": "#c3c6d6",
+                        "tertiary-container": "#006844",
+                        "surface-container-low": "#f1f3ff",
+                        "primary-fixed": "#dae2ff",
+                        "surface-dim": "#cadaff",
+                        "on-primary-fixed": "#001848",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#1d3052",
+                        "primary-container": "#0052cc",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#004e5d",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e0e8ff",
+                        "secondary-fixed": "#adecff",
+                        "inverse-on-surface": "#edf0ff",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "on-tertiary-fixed": "#002113",
+                        "on-tertiary-container": "#72e9af",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#65dca4",
+                        "outline": "#737685",
+                        "on-surface-variant": "#434654",
+                        "secondary-fixed-dim": "#5dd6f3",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d7e2ff",
+                        "secondary": "#00687a",
+                        "on-secondary-fixed": "#001f26",
+                        "surface-variant": "#d7e2ff",
+                        "surface-bright": "#f9f9ff",
+                        "background": "#f9f9ff",
+                        "tertiary-fixed": "#82f9be",
+                        "inverse-primary": "#b2c5ff",
+                        "on-background": "#041b3c",
+                        "secondary-container": "#6ae1ff",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "on-secondary-container": "#006374",
+                        "primary": "#003d9b",
+                        "on-tertiary-fixed-variant": "#005235",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#c4d2ff",
+                        "surface": "#f9f9ff",
+                        "tertiary": "#004e32"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "container-margin": "16px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "gutter": "12px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Plus Jakarta Sans"],
+                        "button": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "button": ["16px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-lg": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Desktop Navigation Drawer -->
+<aside class="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant flex-col p-md gap-sm z-50">
+<div class="font-headline-lg text-headline-lg text-primary mb-xl">Sifta</div>
+<div class="flex items-center gap-md p-md mb-lg">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean professional headshot of a middle-aged Indonesian male business owner, wearing a crisp batik shirt, with a blurred minimalist office background. The lighting is warm and natural, suggesting a dependable and approachable leadership style in a modern retail management context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_HFQjEZsjYMhJ-BQDdHmlvRkgTU-hFo_sx--GrugW2zQB6XS-K60BqeEoizuAnC_CffuAeaWceRQmyQ4o9iljuHZ4q_YvaBQFh4M00K90nwT_2twhlafbCCFMDpPUeke0r8SZB4wPEYYSQOaTcdipk3wLFtvqwyUP4_pr54B3TQEoKunOP4vxPr3ioKZGOPH2O1AIMcV8K88ck-dSjZaAZvrOdOQXvpL0CFO8Dj_wcutkSlw-F3-Uh9A-HuRaCxtbFwyypTXXWW0"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Sifta Owner</span>
+<span class="text-xs text-on-surface-variant">Administrator</span>
+</div>
+</div>
+<nav class="flex flex-col gap-xs flex-grow">
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-lg text-label-lg">Dashboard</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-lg text-label-lg">Karyawan</span>
+</a>
+<a class="flex items-center gap-md p-md bg-primary-container text-on-primary-container font-bold rounded-lg duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-label-lg text-label-lg">Shift</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-lg text-label-lg">Laporan</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-lg text-label-lg">Penggajian</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-lg text-label-lg">Pengaturan</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-64 pb-20 md:pb-0">
+<!-- Top App Bar -->
+<header class="w-full sticky top-0 z-40 bg-surface border-b border-outline-variant flex justify-between items-center px-container-margin py-md">
+<div class="flex items-center gap-md">
+<button class="md:hidden text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary">Kelola Shift</h1>
+</div>
+<div class="flex items-center gap-md">
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="md:hidden w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-[10px] text-on-primary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Small round profile avatar of an administrator, clean and professional, matching the brand's minimalist aesthetic with soft lighting and a neutral palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK_GD_9uC5uTdqZPoJ2C5g8GNxYulieCDChRJSzOIEcWtBN1gXjUX8DYq4BhNzkCQ8iuTZy7h0zye6QsH_ha8GFprOGyrtIXsYFyCTAc6h3t7AIQpD0BRluVmRdzbVx3JAaKX6rrtKLqfn9I8oLr1e7xpXWit5fuPbo_jGN440NrKxenUuVCd_eJcH1s8_7pKKeZDNRVgJVXto5XSiczv3rbFtUDsJ0UoOeeIl00xCy_CnpTpZMihKHrzXPNARKJUd7EGLnU_5QxA"/>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="p-container-margin md:p-lg max-w-5xl mx-auto">
+<div class="flex items-center justify-between mb-lg">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Buat Shift Baru</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Atur jadwal operasional untuk tim Anda.</p>
+</div>
+<button class="hidden md:flex items-center gap-sm px-lg h-12 bg-surface text-primary border border-primary font-button text-button rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">close</span>
+                    Batal
+                </button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Left Column: Form Fields -->
+<div class="lg:col-span-7 flex flex-col gap-lg">
+<section class="flex flex-col gap-md">
+<label class="font-label-lg text-label-lg text-on-surface ml-1">Detail Shift</label>
+<div class="custom-card p-md flex flex-col gap-md">
+<div class="flex flex-col gap-xs">
+<label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider" for="shift_name">Nama Shift</label>
+<input class="w-full p-md border-0 focus:ring-0 font-body-lg text-body-lg text-on-surface placeholder:text-outline" id="shift_name" placeholder="Contoh: Pagi - Barista" type="text" value="Shift Pagi Teratur"/>
+</div>
+<hr class="border-outline-variant"/>
+<div class="grid grid-cols-2 gap-md">
+<div class="flex flex-col gap-xs">
+<label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Waktu Mulai</label>
+<input class="w-full p-md border-0 focus:ring-0 font-body-lg text-body-lg" type="time" value="08:00"/>
+</div>
+<div class="flex flex-col gap-xs border-l border-outline-variant pl-md">
+<label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Waktu Selesai</label>
+<input class="w-full p-md border-0 focus:ring-0 font-body-lg text-body-lg" type="time" value="16:00"/>
+</div>
+</div>
+</div>
+</section>
+<section class="flex flex-col gap-md">
+<label class="font-label-lg text-label-lg text-on-surface ml-1">Konfigurasi Operasional</label>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="custom-card p-md flex flex-col gap-xs">
+<label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Cabang / Lokasi</label>
+<select class="w-full bg-transparent border-0 focus:ring-0 font-body-lg text-body-lg">
+<option>Sudirman Central</option>
+<option>Kemang Point</option>
+<option>BSD Office</option>
+</select>
+</div>
+<div class="custom-card p-md flex flex-col gap-xs">
+<label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Jumlah Staff Dibutuhkan</label>
+<div class="flex items-center gap-md">
+<input class="w-full bg-transparent border-0 focus:ring-0 font-body-lg text-body-lg" type="number" value="4"/>
+<span class="material-symbols-outlined text-outline">group</span>
+</div>
+</div>
+</div>
+</section>
+<section class="flex flex-col gap-md">
+<label class="font-label-lg text-label-lg text-on-surface ml-1">Pengulangan Jadwal</label>
+<div class="custom-card p-md">
+<div class="flex items-center gap-lg py-sm">
+<label class="flex items-center gap-md cursor-pointer">
+<input checked="" class="w-5 h-5 text-primary focus:ring-primary-container" name="recurring" type="radio"/>
+<span class="font-body-lg text-body-lg">Harian</span>
+</label>
+<label class="flex items-center gap-md cursor-pointer">
+<input class="w-5 h-5 text-primary focus:ring-primary-container" name="recurring" type="radio"/>
+<span class="font-body-lg text-body-lg">Mingguan</span>
+</label>
+<label class="flex items-center gap-md cursor-pointer">
+<input class="w-5 h-5 text-primary focus:ring-primary-container" name="recurring" type="radio"/>
+<span class="font-body-lg text-body-lg">Tidak Berulang</span>
+</label>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Employee Selection -->
+<div class="lg:col-span-5 flex flex-col gap-lg">
+<section class="flex flex-col gap-md">
+<div class="flex items-center justify-between ml-1">
+<label class="font-label-lg text-label-lg text-on-surface">Pilih Karyawan Tersedia</label>
+<span class="text-xs font-bold bg-primary-container text-on-primary-container px-2 py-1 rounded">12 Tersedia</span>
+</div>
+<div class="custom-card overflow-hidden">
+<div class="p-md bg-surface-container-low border-b border-outline-variant flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="w-full bg-transparent border-0 focus:ring-0 font-body-md text-body-md" placeholder="Cari nama atau posisi..." type="text"/>
+</div>
+<div class="max-h-[480px] overflow-y-auto scrollbar-hide divide-y divide-outline-variant">
+<!-- Employee Item -->
+<div class="p-md flex items-center justify-between hover:bg-surface-bright transition-colors cursor-pointer group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Headshot of a young Indonesian woman with a friendly smile, professionally dressed, set against a solid pastel background. High clarity, professional lighting, reflecting a dependable hospitality worker." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAez8ZLdi2nPzQpqMVlgdNGSUe9oSVnJ5-Ckagy0L9zEXgAfvKEQCIOJBhxk9gnfVe-fcBkw9Dm3nzWgTHwo5cwDW4IFsPhvjKXfqGr1d3XUuU4H6IRdIl3DR_Wiit4m1AWmhHxcPCDSOsVs84-btoki544f3QE9cVt4sgNLPsIDquUw-tSEP6-0Wkw5dE2Uxd8dl_qG7eNN6wrtjx1JfI1YuI5yHQJrrtK5ESZGgCAvVL3EnzYv-s3Mei7V-RA_uq9IuDkKMQBJpM"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Siti Rahma</span>
+<span class="text-xs text-on-surface-variant">Senior Barista • Central</span>
+</div>
+</div>
+<div class="w-6 h-6 rounded border-2 border-outline group-hover:border-primary flex items-center justify-center transition-all">
+<span class="material-symbols-outlined text-primary scale-0 transition-transform duration-200">check</span>
+</div>
+</div>
+<!-- Employee Item Active -->
+<div class="p-md flex items-center justify-between bg-primary-container/5 transition-colors cursor-pointer group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Headshot of an Indonesian male worker in his 20s, wearing a clean uniform polo shirt, looking confident and reliable. Bright studio lighting with a focus on professional approachability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvieQ1kUYLxEIcmHuxCo3h4CvS88UWaChD7xornQEiGj8UfxQPlNio_sE-DjgwdmGMo8VH3Qydob38ToYKlJPonh-wDYrXZQt1H5hxU8iorS9rAmWuUrcdVsjE5GbWzlkFuAOpSUhAYA7N41AMSeZks6bNEqrnQZQ3-CuxWY5sdJFJJy3xGiboSj3QlGQE8SA3wJOp_ASuumZjeqHCXhXNhQa_NA8Tun68zM9W6qVAuWG_y63m2OnhnjtvZ3n92wbOhiA-JqZs7GY"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Budi Santoso</span>
+<span class="text-xs text-on-surface-variant">Kitchen Crew • Central</span>
+</div>
+</div>
+<div class="w-6 h-6 rounded border-2 border-primary bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[18px]">check</span>
+</div>
+</div>
+<div class="p-md flex items-center justify-between hover:bg-surface-bright transition-colors cursor-pointer group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Headshot of an Indonesian female retail staff member, wearing a professional black shirt, smiling warmly. Soft light, minimalist background, aesthetic consistent with a high-end service brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjP2Ns6zDZiNeREBg0SfMkU8S6iYj553jCSm5bMMVFa01F7YSVqg6ban-h-XduDfncpiDg_4saKyjkYR_ZwRh7IU8DAXCPELFTB4W8yZli9DCRVo_PL7gJ90pItlop1H0XKZTmz6qBEIrF3QjbjHy9melyXQ-zv8jSDhDlHZqmUMv9AEwc_ufBc2G8KesPqxpcD9Vu1vaP3RwDK5fuHLFJe2lU7VuTR8ZYqa2dIIkcvDiUeIXGkfWJf_qAdEv18rFttnBWQP3XmKg"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Agnes Monica</span>
+<span class="text-xs text-on-surface-variant">Server • Central</span>
+</div>
+</div>
+<div class="w-6 h-6 rounded border-2 border-outline group-hover:border-primary flex items-center justify-center transition-all">
+<span class="material-symbols-outlined text-primary scale-0 transition-transform duration-200">check</span>
+</div>
+</div>
+<div class="p-md flex items-center justify-between hover:bg-surface-bright transition-colors cursor-pointer group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Professional headshot of a mature Indonesian male worker, clean-shaven, wearing a collared shirt. He looks experienced and dependable. Lighting is even and professional, neutral studio setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY7L0kYT20uwaLsMQ-QJTO2sjXWsV90lSkpa0cT2P7F0fbEetKPizS9cvhDmscpU14y4PFGpoCjSN_tzj6-uUw2FDF-zMRRbQgYGEzh55A-rMVzi6A4pOtkR8TNeWcwdm3eKI-7QO9d1iYdSVVqe-UhCFxztI_UY1mg8IuZ-QTcwPUJgUfU5S8y2fM0ND3UJR6szpAXJj5_GOCq83W2xrMauDxaWMaaeDPeaY44KxkaHgPghpN-HcGliwQZmVzeIgyw1R8gjrcanE"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Hendra Wijaya</span>
+<span class="text-xs text-on-surface-variant">Supervisor • All Branch</span>
+</div>
+</div>
+<div class="w-6 h-6 rounded border-2 border-outline group-hover:border-primary flex items-center justify-center transition-all">
+<span class="material-symbols-outlined text-primary scale-0 transition-transform duration-200">check</span>
+</div>
+</div>
+<div class="p-md flex items-center justify-between hover:bg-surface-bright transition-colors cursor-pointer group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a young Indonesian man with glasses, looking smart and energetic, wearing a casual professional outfit. The style is modern, minimalist, with a bright white aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwEziKWNx00AFy8x6CKPaDgFSDQnFDMUDnvlXoFNt7mlyv1aBX984JOi4bw_e7RSwqsO10YnZsKayj49I1_1-fz_OLQJrkNERlFmEG612R5dYLWzKwKsEbYsB4AfT-bwd9q9Zur7sBA_g0F2ki7qMBWvvTb-ALT8yRK5H1StFZ60-JbBPEjtZAm6wq52agtAYBtv10oNjYyr4POges75rtrHkIKQfrdVii7FcSBubdW0-3HuOogo0-oPXwmfr9IDnOPR5eYvsuMEY"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Kevin Aris</span>
+<span class="text-xs text-on-surface-variant">Junior Barista • Central</span>
+</div>
+</div>
+<div class="w-6 h-6 rounded border-2 border-outline group-hover:border-primary flex items-center justify-center transition-all">
+<span class="material-symbols-outlined text-primary scale-0 transition-transform duration-200">check</span>
+</div>
+</div>
+</div>
+<div class="p-md bg-surface-container-highest flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface-variant">Terpilih: <strong class="text-primary">1/4 Staff</strong></span>
+<button class="text-primary font-bold text-xs uppercase tracking-wider">Lihat Semua</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Footer Actions Mobile -->
+<div class="mt-xl pt-lg border-t border-outline-variant flex flex-col md:flex-row-reverse gap-md">
+<button class="w-full md:w-auto px-xl h-12 bg-primary text-on-primary font-button text-button rounded-lg shadow-lg active:scale-95 transition-all">
+                    Simpan &amp; Publikasikan
+                </button>
+<button class="w-full md:w-auto px-xl h-12 bg-surface text-primary border border-primary font-button text-button rounded-lg md:hidden">
+                    Batal
+                </button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center h-[56px] bg-surface border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Beranda</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">schedule</span>
+<span class="font-label-md text-label-md">Jadwal</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Gaji</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profil</span>
+</a>
+</nav>
+<script>
+        // Simple Interaction Logic for the "Employee Item" checkboxes
+        document.querySelectorAll('.cursor-pointer.group').forEach(item => {
+            item.addEventListener('click', function() {
+                const checkbox = this.querySelector('.rounded.border-2');
+                const icon = this.querySelector('.material-symbols-outlined.text-primary');
+                const isSelected = checkbox.classList.contains('bg-primary');
+
+                if(isSelected) {
+                    checkbox.classList.remove('bg-primary', 'border-primary');
+                    checkbox.classList.add('border-outline');
+                    icon.classList.add('scale-0');
+                    this.classList.remove('bg-primary-container/5');
+                } else {
+                    checkbox.classList.add('bg-primary', 'border-primary');
+                    checkbox.classList.remove('border-outline');
+                    icon.classList.remove('scale-0');
+                    this.classList.add('bg-primary-container/5');
+                }
+            });
+        });
+
+        // Hover animation for inputs
+        const inputs = document.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.closest('.custom-card')?.classList.add('border-primary');
+            });
+            input.addEventListener('blur', () => {
+                input.closest('.custom-card')?.classList.remove('border-primary');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#041b3c",
+                        "surface-container": "#e8edff",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#0c56d0",
+                        "outline-variant": "#c3c6d6",
+                        "tertiary-container": "#006844",
+                        "surface-container-low": "#f1f3ff",
+                        "primary-fixed": "#dae2ff",
+                        "surface-dim": "#cadaff",
+                        "on-primary-fixed": "#001848",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#1d3052",
+                        "primary-container": "#0052cc",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#004e5d",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e0e8ff",
+                        "secondary-fixed": "#adecff",
+                        "inverse-on-surface": "#edf0ff",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "on-tertiary-fixed": "#002113",
+                        "on-tertiary-container": "#72e9af",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#65dca4",
+                        "outline": "#737685",
+                        "on-surface-variant": "#434654",
+                        "secondary-fixed-dim": "#5dd6f3",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d7e2ff",
+                        "secondary": "#00687a",
+                        "on-secondary-fixed": "#001f26",
+                        "surface-variant": "#d7e2ff",
+                        "surface-bright": "#f9f9ff",
+                        "background": "#f9f9ff",
+                        "tertiary-fixed": "#82f9be",
+                        "inverse-primary": "#b2c5ff",
+                        "on-background": "#041b3c",
+                        "secondary-container": "#6ae1ff",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "on-secondary-container": "#006374",
+                        "primary": "#003d9b",
+                        "on-tertiary-fixed-variant": "#005235",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#c4d2ff",
+                        "surface": "#f9f9ff",
+                        "tertiary": "#004e32"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "container-margin": "16px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "gutter": "12px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Plus Jakarta Sans"],
+                        "button": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "button": ["16px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-lg": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .drag-ghost { opacity: 0.4; }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #c3c6d6; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Navigation Drawer (Sidebar) -->
+<aside class="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant flex-col p-md gap-sm z-50">
+<div class="mb-xl flex items-center gap-sm">
+<img alt="Sifta Logo" class="h-10 w-10" src="https://lh3.googleusercontent.com/aida/AP1WRLtZX5OE9Q6qrOfmPv-Q6RjPblO71Y39Lz4LL5jYDdsOvCYKsBKOE4bWX3d3XiYtIQ5Ae88pY28cJQUxs62gtDSSnlQaRhF57HmVL_sYm8fDaBaU5C__AskUPZTGJoeMipIYlXLeRHzO7n2IehaBv6CFVbpYq_klrTT8GSdse-4JU7B9rcdNfWSvNHsrDTwjB9tON04K_S6nWpItb8LQgzP6is6Cg4GdsbAG83dVFPQgyYyOAC1xfgFrxA8"/>
+<h1 class="font-headline-lg text-headline-lg text-primary">Sifta</h1>
+</div>
+<nav class="flex flex-col gap-xs flex-1">
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg duration-200 ease-in-out font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg duration-200 ease-in-out font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">groups</span> Karyawan
+            </a>
+<a class="flex items-center gap-md p-md bg-primary-container text-on-primary-container font-bold rounded-lg duration-200 ease-in-out font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">event_note</span> Shift
+            </a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg duration-200 ease-in-out font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">assessment</span> Laporan
+            </a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg duration-200 ease-in-out font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span> Penggajian
+            </a>
+</nav>
+<div class="mt-auto pt-md border-t border-outline-variant flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged Indonesian business owner in a clean white shirt, smiling warmly against a soft-focus office background. The lighting is bright and natural, conveying reliability and leadership. High resolution digital photography style with clean edges and vibrant tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzA1QxvAiSlAYI3mKjEPbgYiqfAuqZwrss2BAGGAF05Qz6MxhcMsiJZ9V3CHyUyer-FsbXmHo0LBAwN3Nqsb3pDqwO6dN8fPGvGi6VquN9Bghw8q-MDV1dUHTJp6yVtvJMhRr173xP5louWQhNVlZgkORMdRU_y0E3aD2_zb6HPjYQ_IvvAsjrYeC2gyyIkn2FMrzhTBWjaiXfK5GcZy5F-M92-It7RkMA1nexncnHIyn8MoHO8l7991TZTxE5S2PRbvQUNatd2JE"/>
+</div>
+<div>
+<p class="font-label-lg text-label-lg">Sifta Owner</p>
+<p class="text-xs text-on-surface-variant">Administrator</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 min-h-screen pb-20 md:pb-lg">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 z-40 bg-surface border-b border-outline-variant flex justify-between items-center px-container-margin py-md">
+<div class="flex items-center gap-sm">
+<h2 class="font-headline-md text-headline-md text-primary">Jadwal Shift</h2>
+<div class="hidden md:flex ml-lg gap-sm items-center bg-surface-container-low px-sm py-xs rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="text-label-md font-label-md">Semua Cabang</span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="flex items-center justify-center p-sm hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="relative flex items-center justify-center p-sm hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="hidden md:flex items-center gap-sm bg-primary text-on-primary px-md py-sm rounded-lg font-button text-button active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add</span>
+                    Quick Create
+                </button>
+</div>
+</header>
+<div class="p-container-margin lg:p-lg space-y-lg">
+<!-- Filter & Stats Row -->
+<section class="flex flex-col lg:flex-row gap-lg">
+<!-- Status Indicators (Pills) & Metrics -->
+<div class="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-md">
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl">
+<p class="text-label-md font-label-md text-on-surface-variant mb-xs">Total Shift</p>
+<h3 class="text-headline-md font-headline-md">124</h3>
+<div class="mt-sm flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-xs text-on-surface-variant">Minggu ini</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl">
+<p class="text-label-md font-label-md text-on-surface-variant mb-xs">Understaffed</p>
+<h3 class="text-headline-md font-headline-md text-error">08</h3>
+<div class="mt-sm flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="text-xs text-error">Butuh Perhatian</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl">
+<p class="text-label-md font-label-md text-on-surface-variant mb-xs">Konflik</p>
+<h3 class="text-headline-md font-headline-md text-secondary">02</h3>
+<div class="mt-sm flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+<span class="text-xs font-bold">Overlapping</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl">
+<p class="text-label-md font-label-md text-on-surface-variant mb-xs">Unassigned</p>
+<h3 class="text-headline-md font-headline-md text-tertiary">15</h3>
+<div class="mt-sm flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+<span class="text-xs text-tertiary">Tersedia</span>
+</div>
+</div>
+</div>
+<!-- Filters -->
+<div class="flex flex-wrap items-center gap-sm bg-surface-container-lowest border border-outline-variant p-md rounded-xl h-fit">
+<span class="material-symbols-outlined text-outline">filter_list</span>
+<select class="border-none bg-surface-container-low rounded-lg text-label-md font-label-md py-sm pr-lg">
+<option>Semua Cabang</option>
+<option>Jakarta Selatan</option>
+<option>Bandung Dago</option>
+</select>
+<select class="border-none bg-surface-container-low rounded-lg text-label-md font-label-md py-sm pr-lg">
+<option>Departemen</option>
+<option>Kitchen</option>
+<option>Service</option>
+</select>
+<select class="border-none bg-surface-container-low rounded-lg text-label-md font-label-md py-sm pr-lg">
+<option>Tipe Shift</option>
+<option>Pagi</option>
+<option>Sore</option>
+<option>Malam</option>
+</select>
+</div>
+</section>
+<!-- Main Interactive Area -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Calendar View -->
+<section class="lg:col-span-9 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col">
+<!-- Calendar Header -->
+<div class="p-md border-b border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-md">
+<button class="p-xs hover:bg-surface-container-low rounded-full"><span class="material-symbols-outlined">chevron_left</span></button>
+<h3 class="font-headline-md text-headline-md">Oktober 2023</h3>
+<button class="p-xs hover:bg-surface-container-low rounded-full"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+<div class="flex border border-outline-variant rounded-lg overflow-hidden">
+<button class="px-md py-sm bg-primary-container text-on-primary-container text-label-md font-bold">Minggu</button>
+<button class="px-md py-sm hover:bg-surface-container-low text-label-md">Bulan</button>
+</div>
+</div>
+<!-- Coverage Bar -->
+<div class="px-md py-sm bg-surface-container-low flex items-center gap-lg overflow-x-auto no-scrollbar">
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider shrink-0">Coverage</span>
+<div class="flex-1 flex gap-xs min-w-[600px]">
+<div class="h-2 rounded-full bg-tertiary-fixed-dim flex-1" title="Fully Staffed"></div>
+<div class="h-2 rounded-full bg-error flex-1" title="Understaffed"></div>
+<div class="h-2 rounded-full bg-tertiary-fixed-dim flex-1" title="Fully Staffed"></div>
+<div class="h-2 rounded-full bg-tertiary-fixed-dim flex-1" title="Fully Staffed"></div>
+<div class="h-2 rounded-full bg-secondary-container flex-1" title="Overstaffed"></div>
+<div class="h-2 rounded-full bg-tertiary-fixed-dim flex-1" title="Fully Staffed"></div>
+<div class="h-2 rounded-full bg-tertiary-fixed-dim flex-1" title="Fully Staffed"></div>
+</div>
+</div>
+<!-- Calendar Grid -->
+<div class="flex-1 grid grid-cols-7 border-b border-outline-variant">
+<!-- Days Row -->
+<div class="p-sm text-center border-r border-outline-variant text-label-md font-bold text-outline">SEN</div>
+<div class="p-sm text-center border-r border-outline-variant text-label-md font-bold text-outline">SEL</div>
+<div class="p-sm text-center border-r border-outline-variant text-label-md font-bold text-outline">RAB</div>
+<div class="p-sm text-center border-r border-outline-variant text-label-md font-bold text-outline">KAM</div>
+<div class="p-sm text-center border-r border-outline-variant text-label-md font-bold text-outline">JUM</div>
+<div class="p-sm text-center border-r border-outline-variant text-label-md font-bold text-outline">SAB</div>
+<div class="p-sm text-center text-label-md font-bold text-outline">MIN</div>
+</div>
+<!-- Calendar Content -->
+<div class="grid grid-cols-7 min-h-[500px]">
+<!-- Cell Example 1 -->
+<div class="border-r border-b border-outline-variant p-xs space-y-xs min-h-[120px]">
+<span class="text-label-md font-bold p-xs">16</span>
+<div class="bg-surface-container-high p-xs rounded border-l-4 border-primary shadow-sm active:cursor-grabbing cursor-grab">
+<p class="text-[10px] font-bold truncate">Shift Pagi</p>
+<p class="text-[10px] text-on-surface-variant">4/4 Karyawan</p>
+</div>
+<div class="bg-surface-container-high p-xs rounded border-l-4 border-secondary shadow-sm active:cursor-grabbing cursor-grab">
+<p class="text-[10px] font-bold truncate">Shift Sore</p>
+<p class="text-[10px] text-on-surface-variant">2/4 Karyawan</p>
+<div class="mt-xs flex items-center gap-xs text-error font-bold text-[8px]">
+<span class="material-symbols-outlined text-[10px]">priority_high</span> KURANG
+                                </div>
+</div>
+</div>
+<!-- Cell Example 2 (Conflict) -->
+<div class="border-r border-b border-outline-variant p-xs space-y-xs bg-error-container/20">
+<span class="text-label-md font-bold p-xs">17</span>
+<div class="bg-error-container p-xs rounded border-l-4 border-error shadow-sm">
+<p class="text-[10px] font-bold text-on-error-container truncate">Double Booking</p>
+<p class="text-[10px] text-on-error-container">Ahmad S. (Kitchen)</p>
+</div>
+</div>
+<!-- Empty Cells -->
+<div class="border-r border-b border-outline-variant p-xs bg-surface-dim/10">
+<span class="text-label-md font-bold p-xs opacity-30">18</span>
+</div>
+<div class="border-r border-b border-outline-variant p-xs bg-surface-dim/10">
+<span class="text-label-md font-bold p-xs opacity-30">19</span>
+</div>
+<div class="border-r border-b border-outline-variant p-xs bg-surface-dim/10">
+<span class="text-label-md font-bold p-xs opacity-30">20</span>
+</div>
+<div class="border-r border-b border-outline-variant p-xs bg-surface-dim/10">
+<span class="text-label-md font-bold p-xs opacity-30">21</span>
+</div>
+<div class="border-b border-outline-variant p-xs bg-surface-dim/10">
+<span class="text-label-md font-bold p-xs opacity-30">22</span>
+</div>
+<!-- Repeat rows... simplified for UI design -->
+</div>
+</section>
+<!-- Unassigned Sidebar -->
+<aside class="lg:col-span-3 space-y-md">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col h-full">
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-label-lg text-label-lg">Karyawan Tersedia</h3>
+<span class="bg-tertiary-container text-on-tertiary px-xs rounded text-[10px] font-bold">15</span>
+</div>
+<div class="space-y-sm overflow-y-auto max-h-[600px] pr-xs custom-scrollbar">
+<!-- Employee Card -->
+<div class="p-sm border border-outline-variant rounded-lg bg-white cursor-grab active:cursor-grabbing hover:border-primary transition-colors flex items-center gap-sm group" draggable="true">
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up face portrait of a young Indonesian male employee, clean-shaven, wearing a simple blue polo shirt. He has a friendly and helpful expression. Soft studio lighting on a neutral grey background. Highly detailed, 8k professional corporate headshot style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_lPXC5UqouslIZJ1S3GUAloNJk4pzmjITbutqBNezBjTmr5lX71j9qtoz9e2aqhcmepQio7wD5Nxoh4rQQF-2pJMlYo3wwYImHltZdqlfN6YYu6-PQfimILRzy4BNPMjSnJEiQMNOAaAzWjRVcjp6yY0LuQeirJcnPG9AsWqX-BQ9C0QqNm1XL155nO-0AdRWelBO7ZYiwjztuMMCdr-NZWZhWGVSDmd5gz5U0alGbPA4SMLJHVfH1HvvUSynUYvSqIFNGY-kBmQ"/>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold truncate">Budi Santoso</p>
+<p class="text-[10px] text-on-surface-variant">Service • 0h/40h</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary text-sm">drag_indicator</span>
+</div>
+<div class="p-sm border border-outline-variant rounded-lg bg-white cursor-grab active:cursor-grabbing hover:border-primary transition-colors flex items-center gap-sm group" draggable="true">
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a female Indonesian worker in her 20s with her hair tied back, wearing a black apron. She looks professional and ready for a shift in a modern cafe or retail environment. Bright, clean aesthetic with balanced lighting and sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs8pmZdNRXp6R-RONDkMTZXXF8EEVs8T3Uhhlm3ynRTefVqldSNgu0mSk66Mxb4XVkwSaGJ8cDCj4clnwRQkUXdAG9zEI4pPviTZqwR0Ws3J-kUdV45xx6xxFm_nhtZy4oFYzmEAhHUd9hvBhK3XEOCXMkpwBr5KhKnzT5XDJXxrgQsrvxnjGRT_XYiRkSha_Ev1us8w4LCp7LgaNHMwEFOkUTbmoVFdeFNGFpHoVTMl3OiuS48fu2c8bZkhy0h1BFNvfPC6XMdKE"/>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold truncate">Siti Aminah</p>
+<p class="text-[10px] text-on-surface-variant">Kitchen • 8h/40h</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary text-sm">drag_indicator</span>
+</div>
+<div class="p-sm border border-outline-variant rounded-lg bg-white cursor-grab active:cursor-grabbing hover:border-primary transition-colors flex items-center gap-sm group" draggable="true">
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A focused young Indonesian man with short black hair, wearing a professional collared shirt. He appears diligent and competent. Bright, clean background with high-key lighting that emphasizes a modern, digital-first business environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuA1Vuo7MFVHjuYi5LbsIESSFxrvuEdxMFei1F-i3QyLSib0gh9UTDlXte_nmmPy-mRrKeTwi_eRLVLLO9qbCpaNwlwmBesduMv_yS9TSJeuuQmVNNA5-JSmIvmDefZW9sbAXGm54Tx_FB_K9iCPciQInXGH-E6-p3b51mdY-gzE3LL_q6lqLBOeR8bZVd-18Wnlir9EE-udC4pMgkPQN0ZTQ3-2USuSC2UUVQs19LoAkWZ6n47MD4NRs2U9pWkpyo5MmLnW7fp-o"/>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold truncate">Andi Wijaya</p>
+<p class="text-[10px] text-on-surface-variant">Security • 12h/40h</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary text-sm">drag_indicator</span>
+</div>
+<!-- More items... -->
+</div>
+<button class="mt-md w-full border border-dashed border-outline-variant p-sm rounded-lg text-label-md text-outline hover:bg-surface-container-low transition-colors">
+                            + Tambah Karyawan Baru
+                        </button>
+</div>
+<!-- Conflict Alerts Alert Box -->
+<div class="bg-error-container p-md rounded-xl space-y-sm">
+<div class="flex items-center gap-sm text-on-error-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+<h4 class="font-label-lg text-label-lg">Peringatan Konflik</h4>
+</div>
+<p class="text-xs text-on-error-container/80">Ada 2 jadwal yang bertabrakan di Cabang Jakarta Selatan.</p>
+<button class="w-full bg-error text-on-error py-sm rounded-lg text-xs font-bold">Review Sekarang</button>
+</div>
+</aside>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full h-[56px] bg-surface border-t border-outline-variant flex justify-around items-center z-50">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low active:scale-95 transition-transform font-label-md text-label-md">
+<span class="material-symbols-outlined">home</span>
+            Beranda
+        </button>
+<button class="flex flex-col items-center justify-center text-primary font-bold active:scale-95 transition-transform font-label-md text-label-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">schedule</span>
+            Jadwal
+        </button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low active:scale-95 transition-transform font-label-md text-label-md">
+<span class="material-symbols-outlined">payments</span>
+            Gaji
+        </button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low active:scale-95 transition-transform font-label-md text-label-md">
+<span class="material-symbols-outlined">person</span>
+            Profil
+        </button>
+</nav>
+<!-- FAB (Mobile Only) -->
+<button class="md:hidden fixed bottom-20 right-container-margin w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center z-50 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-size: 32px;">add</span>
+</button>
+<script>
+        // Micro-interaction for drag and drop simulation
+        const cards = document.querySelectorAll('[draggable="true"]');
+        cards.forEach(card => {
+            card.addEventListener('dragstart', () => {
+                card.classList.add('drag-ghost');
+            });
+            card.addEventListener('dragend', () => {
+                card.classList.remove('drag-ghost');
+            });
+        });
+
+        // Toggle Active States in Sidebar
+        const navLinks = document.querySelectorAll('aside nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                navLinks.forEach(l => {
+                    l.classList.remove('bg-primary-container', 'text-on-primary-container', 'font-bold');
+                    l.classList.add('text-on-surface-variant');
+                });
+                link.classList.add('bg-primary-container', 'text-on-primary-container', 'font-bold');
+                link.classList.remove('text-on-surface-variant');
+            });
+        });
+    </script>
+</body></html>

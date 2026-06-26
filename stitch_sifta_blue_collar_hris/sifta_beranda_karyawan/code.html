@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Sifta - Beranda Karyawan</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e1e8fd",
+                    "on-secondary-container": "#684000",
+                    "surface-tint": "#006a61",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f9f9ff",
+                    "surface-variant": "#dce2f7",
+                    "inverse-primary": "#6bd8cb",
+                    "tertiary-container": "#00855b",
+                    "surface-container": "#e9edff",
+                    "on-secondary-fixed": "#2a1700",
+                    "primary-fixed": "#89f5e7",
+                    "secondary-fixed-dim": "#ffb95f",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-primary-fixed": "#00201d",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#bcc9c6",
+                    "on-surface-variant": "#3d4947",
+                    "secondary-fixed": "#ffddb8",
+                    "on-tertiary-fixed": "#002113",
+                    "outline": "#6d7a77",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#005049",
+                    "inverse-on-surface": "#edf0ff",
+                    "error": "#ba1a1a",
+                    "on-surface": "#141b2b",
+                    "on-background": "#141b2b",
+                    "tertiary": "#006947",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "primary": "#00685f",
+                    "secondary": "#855300",
+                    "secondary-container": "#fea619",
+                    "on-primary": "#ffffff",
+                    "surface": "#f9f9ff",
+                    "on-tertiary-container": "#f5fff6",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#653e00",
+                    "primary-fixed-dim": "#6bd8cb",
+                    "tertiary-fixed": "#6ffbbe",
+                    "background": "#f9f9ff",
+                    "surface-container-low": "#f1f3ff",
+                    "surface-dim": "#d3daef",
+                    "inverse-surface": "#293040",
+                    "surface-container-highest": "#dce2f7",
+                    "on-primary-container": "#f4fffc",
+                    "primary-container": "#008378",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "xl": "32px",
+                    "margin-desktop": "48px",
+                    "xs": "4px",
+                    "base": "4px",
+                    "gutter": "16px",
+                    "margin-mobile": "16px",
+                    "sm": "8px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "display-sm": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "label-lg": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .active-nav-indicator {
+        position: relative;
+      }
+      .active-nav-indicator::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        width: 16px;
+        height: 4px;
+        border-radius: 2px;
+        background-color: currentColor;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface dark:bg-background text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 bg-surface dark:bg-background border-b border-outline-variant dark:border-outline flex justify-between items-center w-full px-margin-mobile h-16">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="location_on">location_on</span>
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Lokasi Sekarang</span>
+<span class="text-label-lg font-label-lg font-bold text-on-surface">Cabang Sudirman</span>
+</div>
+</div>
+<h1 class="text-headline-lg font-headline-lg font-extrabold text-primary dark:text-primary-fixed-dim tracking-tight">Sifta</h1>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container shadow-sm hover:scale-105 transition-transform duration-200">
+<img class="w-full h-full object-cover" data-alt="A high-quality professional portrait of a modern office employee in a clean, minimalist environment. The person has a friendly, trustworthy expression suitable for a corporate HR application. Soft natural light illuminates the scene, highlighting a professional yet approachable aesthetic. The color palette features neutral tones with a subtle teal accent, consistent with a modern Indonesian workforce brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt2FrHPum8hS-KkyGk05PNUH38RKebICLzgKsXyvepXBPIFez95PzaVDcelDCV3YKct5cNVR-6lpIqJer4F-NQPvMrUdxpPo6-B7FDIplEJsp934DYTSANKQywSbi8j7BtOq28Oe6DFPo40NJskFdv60aAO7uPWCkD5hnDH_gQTueOzozU8h1IfKJytH86wEqwgfePVCJRPCUPCbOV2piGbLl4dY0767jtZMpbYccdQ_0gPs5QfD5rItMf6bzSnellTiTVqzgB1_A"/>
+</div>
+</header>
+<main class="pb-24 px-margin-mobile pt-lg flex flex-col gap-lg">
+<!-- Hero Section: Time & Status -->
+<section class="flex flex-col items-center text-center py-sm">
+<div class="text-display-lg-mobile font-display-lg-mobile text-on-surface mb-xs" id="current-time">08:00:24</div>
+<div class="text-body-md font-body-md text-on-surface-variant mb-md" id="current-date">Senin, 14 Oktober 2024</div>
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-high border border-outline-variant">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="text-label-lg font-label-lg text-on-surface">Shift Pagi: 08:00 - 16:00</span>
+</div>
+</section>
+<!-- Main Actions: Clock In/Out -->
+<section class="grid grid-cols-2 gap-md">
+<!-- Clock In Button -->
+<button class="flex flex-col items-center justify-center aspect-square rounded-[2rem] bg-primary text-on-primary shadow-lg active:scale-95 transition-all duration-200 hover:bg-primary-container hover:text-on-primary-container group" onclick="handleClockIn()">
+<div class="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center mb-md group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined !text-[40px]" style="font-variation-settings: 'FILL' 1;">login</span>
+</div>
+<span class="text-headline-sm font-headline-sm">Masuk</span>
+<span class="text-label-sm font-label-sm opacity-80">Absen Datang</span>
+</button>
+<!-- Clock Out Button (Disabled if not clocked in) -->
+<button class="flex flex-col items-center justify-center aspect-square rounded-[2rem] bg-surface-dim text-outline cursor-not-allowed opacity-60" disabled="">
+<div class="w-16 h-16 rounded-full bg-on-surface/10 flex items-center justify-center mb-md">
+<span class="material-symbols-outlined !text-[40px]" style="font-variation-settings: 'FILL' 1;">logout</span>
+</div>
+<span class="text-headline-sm font-headline-sm">Pulang</span>
+<span class="text-label-sm font-label-sm">Absen Keluar</span>
+</button>
+</section>
+<!-- Geofencing Status -->
+<div class="bg-on-tertiary-container/10 border border-tertiary/20 rounded-xl p-md flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A clean, stylized map visualization showing a circular geofenced boundary over a modern city street layout. The style is minimalist with soft teal and light gray tones. A central marker indicates the user's location within the safe green-tinted zone, emphasizing security and precision for a professional attendance application." data-location="Jakarta Sudirman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkUGPUiq6SzGo6oup_0lzmCdlVI9xy9DowSw7iNjmgsjaOZkbK9dqbRp5HWrf_oHYnMbfW5FHF_OHxQUa36Ekb8_5oSkSYJSnBbpgv-XMTJqcoTVHZtveK9zylokhIWYPkr6DMPmAb9JHVGKpq0bTXDUJy7kXfqaIIiDq8HSv1rdsmFOxqwJ0G1fYdk7IIXkuvHiVXPTQZkdA86B0qRPrwCaTrYg6h0Io4rvPA-qTTFiyYqA1e01Q1vsukCxSRLzttTrVwkHvaWww"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-1.5 mb-0.5">
+<span class="material-symbols-outlined text-tertiary !text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-label-lg font-label-lg text-tertiary">Lokasi Sesuai</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant">Anda berada di dalam zona kantor.</p>
+</div>
+</div>
+<!-- Today's Summary Card -->
+<section>
+<h2 class="text-headline-sm font-headline-sm text-on-surface mb-md px-1">Ringkasan Hari Ini</h2>
+<div class="bg-white dark:bg-surface-container-low rounded-2xl p-lg shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-outline-variant flex flex-col gap-lg">
+<div class="grid grid-cols-2 gap-lg border-b border-outline-variant pb-lg">
+<div class="flex flex-col gap-xs">
+<span class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined !text-sm">schedule</span> Jam Kerja
+                        </span>
+<span class="text-display-sm font-display-sm text-on-surface">0j 0m</span>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined !text-sm">payments</span> Estimasi Gaji
+                        </span>
+<span class="text-display-sm font-display-sm text-primary">Rp 0</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-label-lg font-label-lg text-on-surface-variant px-1">
+<span>Shift Selesai pukul 16:00</span>
+<span class="text-primary hover:underline cursor-pointer">Lihat Rincian</span>
+</div>
+</div>
+</section>
+<!-- Dynamic Tip/Info -->
+<div class="bg-secondary-container/20 rounded-xl p-md flex gap-md border border-secondary-container/30">
+<span class="material-symbols-outlined text-on-secondary-container">lightbulb</span>
+<p class="text-body-md font-body-md text-on-secondary-fixed-variant">
+                Pastikan GPS tetap aktif agar sistem dapat mencatat waktu lembur Anda secara otomatis.
+            </p>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface-container-lowest dark:bg-surface-dim shadow-[0_-4px_12px_rgba(0,0,0,0.05)] rounded-t-xl">
+<!-- Beranda (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-on-primary-fixed-variant text-on-primary-container dark:text-primary-fixed rounded-full px-5 py-1 scale-90 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-label-sm font-label-sm">Beranda</span>
+</a>
+<!-- Jadwal -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-5 py-1 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-label-sm font-label-sm">Jadwal</span>
+</a>
+<!-- Laporan -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-5 py-1 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-label-sm font-label-sm">Laporan</span>
+</a>
+</nav>
+<script>
+        // Update Time & Date
+        function updateDateTime() {
+            const now = new Date();
+            
+            // Format Time
+            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            document.getElementById('current-time').textContent = now.toLocaleTimeString('id-ID', timeOptions);
+            
+            // Format Date
+            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('current-date').textContent = now.toLocaleDateString('id-ID', dateOptions);
+        }
+
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
+        // Interaction Logic
+        function handleClockIn() {
+            // Simple visual feedback for demo
+            const btn = event.currentTarget;
+            btn.classList.add('scale-95', 'opacity-80');
+            setTimeout(() => {
+                btn.classList.remove('scale-95', 'opacity-80');
+                alert('Berhasil Absen Masuk! Selamat bekerja.');
+            }, 200);
+        }
+
+        // Tactile feedback for navigation
+        const navItems = document.querySelectorAll('nav a');
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                navItems.forEach(i => {
+                    i.classList.remove('bg-primary-container', 'dark:bg-on-primary-fixed-variant', 'text-on-primary-container', 'dark:text-primary-fixed', 'rounded-full', 'scale-90');
+                    i.classList.add('text-on-surface-variant', 'dark:text-outline');
+                });
+                item.classList.add('bg-primary-container', 'dark:bg-on-primary-fixed-variant', 'text-on-primary-container', 'dark:text-primary-fixed', 'rounded-full', 'scale-90');
+                item.classList.remove('text-on-surface-variant', 'dark:text-outline');
+            });
+        });
+    </script>
+</body></html>

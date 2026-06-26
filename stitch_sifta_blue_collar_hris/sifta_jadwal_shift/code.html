@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Jadwal Shift - Sifta</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e1e8fd",
+                    "on-secondary-container": "#684000",
+                    "surface-tint": "#006a61",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f9f9ff",
+                    "surface-variant": "#dce2f7",
+                    "inverse-primary": "#6bd8cb",
+                    "tertiary-container": "#00855b",
+                    "surface-container": "#e9edff",
+                    "on-secondary-fixed": "#2a1700",
+                    "primary-fixed": "#89f5e7",
+                    "secondary-fixed-dim": "#ffb95f",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-primary-fixed": "#00201d",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#bcc9c6",
+                    "on-surface-variant": "#3d4947",
+                    "secondary-fixed": "#ffddb8",
+                    "on-tertiary-fixed": "#002113",
+                    "outline": "#6d7a77",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#005049",
+                    "inverse-on-surface": "#edf0ff",
+                    "error": "#ba1a1a",
+                    "on-surface": "#141b2b",
+                    "on-background": "#141b2b",
+                    "tertiary": "#006947",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "primary": "#00685f",
+                    "secondary": "#855300",
+                    "secondary-container": "#fea619",
+                    "on-primary": "#ffffff",
+                    "surface": "#f9f9ff",
+                    "on-tertiary-container": "#f5fff6",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#653e00",
+                    "primary-fixed-dim": "#6bd8cb",
+                    "tertiary-fixed": "#6ffbbe",
+                    "background": "#f9f9ff",
+                    "surface-container-low": "#f1f3ff",
+                    "surface-dim": "#d3daef",
+                    "inverse-surface": "#293040",
+                    "surface-container-highest": "#dce2f7",
+                    "on-primary-container": "#f4fffc",
+                    "primary-container": "#008378",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "xl": "32px",
+                    "margin-desktop": "48px",
+                    "xs": "4px",
+                    "base": "4px",
+                    "gutter": "16px",
+                    "margin-mobile": "16px",
+                    "sm": "8px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "display-sm": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "label-lg": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      body {
+        background-color: #f9f9ff;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .active-scale:active {
+        transform: scale(0.95);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- Top App Bar -->
+<header class="bg-surface sticky top-0 z-50 flex justify-between items-center w-full px-margin-mobile h-16 border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<h1 class="text-headline-lg-mobile font-headline-lg-mobile font-bold text-primary">Sifta</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a friendly Indonesian female employee wearing a neat uniform, smiling at the camera. The background is a soft-focus modern office interior with warm lighting. The aesthetic is professional, clean, and trustworthy, matching a high-end corporate identity with a focus on approachable employee relations." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJSeWLPkbmNUasoHOkBidW4sle192d5h9zYO5tt0V2nPoLjxfyVcK2pCoSOD6IZw3DKKJ86FR48nOSxwdDrHZt1tzgKMwyhpiwWJHmyGnaALJBSjBdg8tpA4lPnn4fP45P4qIjgNUtzzAp2HBjY4WryMOC0QUWPqYtvgmt-Pf98JTgqvmg8EbmfpGHz9Z49pJzCQyEE-1EkqJNiSA1LUGP4plm7T3PC_Uvl4xIbeTDQbGOSfxyEdj4NWxmc5xinxJt4Avehjm5CcY"/>
+</div>
+</header>
+<main class="pb-24">
+<!-- Screen Title -->
+<section class="px-margin-mobile pt-6 pb-2">
+<h2 class="text-display-sm font-display-sm text-on-surface">Jadwal Shift</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">Pantau waktu kerja dan lokasi penugasan Anda.</p>
+</section>
+<!-- Horizontal Week Picker -->
+<section class="mt-4">
+<div class="flex overflow-x-auto hide-scrollbar gap-3 px-margin-mobile pb-4">
+<!-- Day Item -->
+<div class="flex flex-col items-center min-w-[56px] py-4 rounded-xl border border-outline-variant bg-white shadow-sm transition-all hover:bg-surface-container-low active-scale">
+<span class="text-label-sm font-label-sm text-outline">SEN</span>
+<span class="text-headline-sm font-headline-sm mt-1">12</span>
+</div>
+<!-- Day Item Active -->
+<div class="flex flex-col items-center min-w-[56px] py-4 rounded-xl bg-primary text-on-primary shadow-lg border-2 border-primary-container active-scale">
+<span class="text-label-sm font-label-sm opacity-80">SEL</span>
+<span class="text-headline-sm font-headline-sm mt-1">13</span>
+<div class="w-1.5 h-1.5 bg-white rounded-full mt-1"></div>
+</div>
+<!-- Day Item -->
+<div class="flex flex-col items-center min-w-[56px] py-4 rounded-xl border border-outline-variant bg-white shadow-sm transition-all hover:bg-surface-container-low active-scale">
+<span class="text-label-sm font-label-sm text-outline">RAB</span>
+<span class="text-headline-sm font-headline-sm mt-1">14</span>
+</div>
+<!-- Day Item -->
+<div class="flex flex-col items-center min-w-[56px] py-4 rounded-xl border border-outline-variant bg-white shadow-sm transition-all hover:bg-surface-container-low active-scale">
+<span class="text-label-sm font-label-sm text-outline">KAM</span>
+<span class="text-headline-sm font-headline-sm mt-1">15</span>
+</div>
+<!-- Day Item -->
+<div class="flex flex-col items-center min-w-[56px] py-4 rounded-xl border border-outline-variant bg-white shadow-sm transition-all hover:bg-surface-container-low active-scale">
+<span class="text-label-sm font-label-sm text-outline">JUM</span>
+<span class="text-headline-sm font-headline-sm mt-1">16</span>
+</div>
+<!-- Day Item -->
+<div class="flex flex-col items-center min-w-[56px] py-4 rounded-xl border border-outline-variant bg-white shadow-sm transition-all hover:bg-surface-container-low active-scale">
+<span class="text-label-sm font-label-sm text-outline">SAB</span>
+<span class="text-headline-sm font-headline-sm mt-1">17</span>
+</div>
+</div>
+</section>
+<!-- Shift Cards Container -->
+<section class="px-margin-mobile mt-4 space-y-4">
+<!-- Active Shift Card (Today) -->
+<div class="bg-white rounded-xl border-l-4 border-secondary overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.05)] flex flex-col p-4 relative border-r border-t border-b border-outline-variant">
+<div class="absolute top-4 right-4 bg-secondary-container px-3 py-1 rounded-full">
+<span class="text-on-secondary-container text-label-sm font-label-sm">Shift Saat Ini</span>
+</div>
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-secondary" data-icon="wb_sunny">wb_sunny</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Shift Pagi</h3>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="schedule">schedule</span>
+<span class="text-body-md font-body-md">08:00 - 16:00</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="store">store</span>
+<span class="text-body-md font-body-md">Gudang Utama - Jakarta Pusat</span>
+</div>
+</div>
+<div class="mt-4 flex gap-2">
+<button class="flex-1 py-2.5 bg-primary text-on-primary rounded-lg text-label-lg font-label-lg active-scale transition-all">Absensi Sekarang</button>
+</div>
+</div>
+<!-- Upcoming Shift Card -->
+<div class="bg-white rounded-xl border-l-4 border-primary overflow-hidden shadow-sm flex flex-col p-4 border-r border-t border-b border-outline-variant opacity-90">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary" data-icon="dark_mode">dark_mode</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Shift Malam</h3>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="schedule">schedule</span>
+<span class="text-body-md font-body-md">22:00 - 06:00</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="location_on">location_on</span>
+<span class="text-body-md font-body-md">Toko Cabang - Bekasi</span>
+</div>
+</div>
+<div class="mt-2 text-label-sm font-label-sm text-outline italic">Besok, 14 Mar</div>
+</div>
+<!-- Delayed/Swap Available Card -->
+<div class="bg-surface-container-low rounded-xl border-l-4 border-tertiary-container overflow-hidden shadow-sm flex flex-col p-4 border-r border-t border-b border-outline-variant">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-tertiary" data-icon="wb_twilight">wb_twilight</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Shift Siang</h3>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="schedule">schedule</span>
+<span class="text-body-md font-body-md">14:00 - 22:00</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="location_on">location_on</span>
+<span class="text-body-md font-body-md">Gudang Utama - Jakarta Pusat</span>
+</div>
+</div>
+<div class="mt-2 text-label-sm font-label-sm text-outline">Kamis, 15 Mar</div>
+</div>
+</section>
+<!-- CTA Action -->
+<section class="px-margin-mobile mt-8">
+<button class="w-full flex items-center justify-center gap-2 py-4 bg-white border-2 border-primary text-primary rounded-xl text-label-lg font-label-lg active-scale transition-all hover:bg-primary-container hover:text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+                Ajukan Tukar Shift
+            </button>
+</section>
+<!-- Informational Glass Card -->
+<section class="px-margin-mobile mt-6">
+<div class="bg-primary-container/20 rounded-2xl p-6 relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl"></div>
+<h4 class="text-headline-sm font-headline-sm text-primary mb-2">Butuh Bantuan?</h4>
+<p class="text-body-md font-body-md text-on-surface-variant mb-4">Jika Anda tidak dapat menghadiri shift, harap lapor 24 jam sebelumnya untuk mempermudah koordinasi tim.</p>
+<a class="text-primary font-bold text-label-lg underline underline-offset-4" href="#">Hubungi Admin</a>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface-container-lowest shadow-[0_-4px_12px_rgba(0,0,0,0.05)] rounded-t-xl">
+<!-- Beranda -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-container-high transition-all active-scale" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-sm font-label-sm">Beranda</span>
+</a>
+<!-- Jadwal (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 transition-all active:scale-90 duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+<span class="text-label-sm font-label-sm">Jadwal</span>
+</a>
+<!-- Laporan -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-container-high transition-all active-scale" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-label-sm font-label-sm">Laporan</span>
+</a>
+</nav>
+<script>
+        // Simple Interaction logic for active states on click
+        const navItems = document.querySelectorAll('nav a');
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                navItems.forEach(nav => {
+                    nav.classList.remove('bg-primary-container', 'text-on-primary-container', 'rounded-full');
+                    nav.classList.add('text-on-surface-variant');
+                    const icon = nav.querySelector('.material-symbols-outlined');
+                    if (icon) icon.style.fontVariationSettings = "'FILL' 0";
+                });
+                item.classList.remove('text-on-surface-variant');
+                item.classList.add('bg-primary-container', 'text-on-primary-container', 'rounded-full');
+                const icon = item.querySelector('.material-symbols-outlined');
+                if (icon) icon.style.fontVariationSettings = "'FILL' 1";
+            });
+        });
+
+        // Day picker interaction
+        const dayItems = document.querySelectorAll('section .flex.overflow-x-auto > div');
+        dayItems.forEach(day => {
+            day.addEventListener('click', () => {
+                dayItems.forEach(d => {
+                    d.classList.remove('bg-primary', 'text-on-primary', 'border-2', 'border-primary-container');
+                    d.classList.add('bg-white', 'text-on-surface', 'border', 'border-outline-variant');
+                    const dot = d.querySelector('div');
+                    if(dot) dot.style.display = 'none';
+                });
+                day.classList.remove('bg-white', 'text-on-surface', 'border', 'border-outline-variant');
+                day.classList.add('bg-primary', 'text-on-primary', 'border-2', 'border-primary-container');
+                let dot = day.querySelector('div');
+                if(!dot) {
+                    dot = document.createElement('div');
+                    dot.className = "w-1.5 h-1.5 bg-white rounded-full mt-1";
+                    day.appendChild(dot);
+                } else {
+                    dot.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body></html>

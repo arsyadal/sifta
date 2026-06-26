@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Sifta - Dashboard Owner</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .bento-item-large {
+            grid-column: span 2;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(229, 231, 235, 0.5);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e1e8fd",
+                        "on-secondary-container": "#684000",
+                        "surface-tint": "#006a61",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "surface-variant": "#dce2f7",
+                        "inverse-primary": "#6bd8cb",
+                        "tertiary-container": "#00855b",
+                        "surface-container": "#e9edff",
+                        "on-secondary-fixed": "#2a1700",
+                        "primary-fixed": "#89f5e7",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-primary-fixed": "#00201d",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#bcc9c6",
+                        "on-surface-variant": "#3d4947",
+                        "secondary-fixed": "#ffddb8",
+                        "on-tertiary-fixed": "#002113",
+                        "outline": "#6d7a77",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#005049",
+                        "inverse-on-surface": "#edf0ff",
+                        "error": "#ba1a1a",
+                        "on-surface": "#141b2b",
+                        "on-background": "#141b2b",
+                        "tertiary": "#006947",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "primary": "#00685f",
+                        "secondary": "#855300",
+                        "secondary-container": "#fea619",
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "on-tertiary-container": "#f5fff6",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "primary-fixed-dim": "#6bd8cb",
+                        "tertiary-fixed": "#6ffbbe",
+                        "background": "#f9f9ff",
+                        "surface-container-low": "#f1f3ff",
+                        "surface-dim": "#d3daef",
+                        "inverse-surface": "#293040",
+                        "surface-container-highest": "#dce2f7",
+                        "on-primary-container": "#f4fffc",
+                        "primary-container": "#008378",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xl": "32px",
+                        "margin-desktop": "48px",
+                        "xs": "4px",
+                        "base": "4px",
+                        "gutter": "16px",
+                        "margin-mobile": "16px",
+                        "sm": "8px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "display-sm": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "label-lg": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- Top AppBar (Admin Variant) -->
+<header class="sticky top-0 z-50 bg-surface border-b border-outline-variant flex justify-between items-center w-full px-margin-mobile h-16">
+<div class="flex flex-col">
+<h1 class="text-primary font-headline-lg-mobile text-headline-lg-mobile font-bold">Dashboard Owner</h1>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="text-label-sm font-label-sm">Cabang Sudirman</span>
+<span class="material-symbols-outlined text-[16px]">expand_more</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a female business executive in a modern office, soft natural lighting, high-end corporate style, friendly expression, clean background with muted teal and white tones, sharp focus, professional photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb7c1Lat1W7YIW0vQ2H0NFiW38wBoVfZ0ooowmx50aIH7qt2T_XUWQYQ8Et2BPA9SDFaXW16FGcbd2dM0I0V6oIgZOmNt6Csn-rmhbSI9hic5BE9-ysqtC3_mFiSSgCNe1nAdIVE0nmW2esx5AsIY3lPnDfa7YunEtfeNEKT8VpUZ78_-FD_czjTbp1lgZ3u73sJui3znFo9R8FzRJL_vFFXAIN6xyI4U_ENqbBpZU0MEwHwPGnUOlaJq1cz_yeg_ETvTzDgEfi_o"/>
+</div>
+</header>
+<main class="px-margin-mobile pt-lg space-y-lg">
+<!-- Stats Summary Section (Tactile Bento Style) -->
+<section class="grid grid-cols-2 gap-md">
+<div class="col-span-2 glass-card rounded-xl p-md flex items-center justify-between border-l-4 border-primary shadow-sm active:scale-95 transition-transform duration-150">
+<div>
+<p class="text-on-surface-variant text-label-lg font-label-lg">Hadir</p>
+<p class="text-primary text-display-sm font-display-sm">42<span class="text-body-md font-body-md text-on-surface-variant">/50</span></p>
+</div>
+<div class="bg-primary-container p-sm rounded-lg">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">group</span>
+</div>
+</div>
+<div class="glass-card rounded-xl p-md border-l-4 border-secondary shadow-sm active:scale-95 transition-transform duration-150">
+<p class="text-on-surface-variant text-label-lg font-label-lg">Terlambat</p>
+<p class="text-secondary text-display-sm font-display-sm">3</p>
+<div class="mt-xs text-label-sm font-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                    Perlu review
+                </div>
+</div>
+<div class="glass-card rounded-xl p-md border-l-4 border-outline shadow-sm active:scale-95 transition-transform duration-150">
+<p class="text-on-surface-variant text-label-lg font-label-lg">Belum Absen</p>
+<p class="text-on-surface text-display-sm font-display-sm">5</p>
+<div class="mt-xs text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                    Shift pagi
+                </div>
+</div>
+</section>
+<!-- Quick Actions (Modern Field-First) -->
+<section class="space-y-sm">
+<h2 class="text-on-surface font-headline-sm text-headline-sm">Aksi Cepat</h2>
+<div class="flex gap-md">
+<button class="flex-1 bg-primary text-on-primary h-12 rounded-xl flex items-center justify-center gap-sm shadow-md active:scale-95 transition-transform">
+<span class="material-symbols-outlined">person_add</span>
+<span class="text-label-lg font-label-lg">Karyawan</span>
+</button>
+<button class="flex-1 border border-primary text-primary h-12 rounded-xl flex items-center justify-center gap-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined">calendar_add_on</span>
+<span class="text-label-lg font-label-lg">Jadwal Baru</span>
+</button>
+</div>
+</section>
+<!-- Real-time Feed Section -->
+<section class="space-y-sm">
+<div class="flex justify-between items-center">
+<h2 class="text-on-surface font-headline-sm text-headline-sm">Aktivitas Terbaru</h2>
+<button class="text-primary text-label-lg font-label-lg">Lihat Semua</button>
+</div>
+<div class="space-y-sm">
+<!-- Activity Item 1 -->
+<div class="bg-white p-md rounded-xl shadow-[0px_2px_4px_rgba(0,0,0,0.05)] border border-outline-variant flex gap-md items-start">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex-shrink-0 flex items-center justify-center">
+<img class="w-full h-full object-cover rounded-full" data-alt="A portrait of a male security guard in a clean navy uniform, professional and friendly, outdoor daytime setting, bokeh office background, natural lighting, high resolution, digital photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuqhGkkCAjz6JBtkqr3p1-T0Y-qvhhckRpQOVI8eJn9S72kDj50y0b2W6nxg0RGiTWwNAW7shLhzsVzL9bO2R3LtG5b1sdxoefsbeVtJ2FepumcSqcFGQrXnA48y5RQ02AWxiAfw4yXbgtczTO_rfJGx3uB0rGrl4-InEazco1iHSStw8meWUYGCVYUjXLUDEz2tEfZvUsIPEaW58IWdLctiMCeTqx_b-TD1wW6S4rYwzLNBNxmL0fk1z79LHUooWta-q8D4oMkGU"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="text-on-surface font-label-lg text-label-lg">Budi <span class="font-normal text-on-surface-variant text-body-md">(Security)</span></p>
+<span class="text-label-sm font-label-sm text-on-surface-variant">07:55</span>
+</div>
+<p class="text-on-surface-variant text-body-md mt-xs">Baru saja melakukan <span class="text-primary font-semibold">Absen Masuk</span></p>
+<div class="mt-sm inline-flex items-center gap-1 px-sm py-xs bg-primary-container/30 text-primary-container text-label-sm font-label-sm rounded-full bg-surface-container-high">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                            Lokasi Sesuai
+                        </div>
+</div>
+</div>
+<!-- Activity Item 2 -->
+<div class="bg-white p-md rounded-xl shadow-[0px_2px_4px_rgba(0,0,0,0.05)] border border-outline-variant flex gap-md items-start opacity-80">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex-shrink-0 flex items-center justify-center">
+<img class="w-full h-full object-cover rounded-full" data-alt="Close up portrait of a female retail worker in a professional uniform, indoor mall background, bright warm lighting, friendly smile, cinematic focus, soft blur." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCAymBwikX0YI4xDJBuEYGlm-uOpkXlgx5jTvTyzE9AhL-ZjQw3wyP-BJibb9fHBsUGBrwN78NTC9HaHjv708pGMttzJIuvFqTrAnoRUzfUDDnkCPJGn3wCSDkXcQojQ46agiU7thANjqLLfx79AYXOZUWf8OtNTz_cNpmFu6kaSZ7R9Nn4KB4Eu_07QSOt31GTAEFIHW3TXx4_R4LDkVaaFXo417g90RmUdmXqGnoddwpoVB8C2NCAhfhupGn7VWil_ENxrn2YrQ"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="text-on-surface font-label-lg text-label-lg">Siti <span class="font-normal text-on-surface-variant text-body-md">(Kasir)</span></p>
+<span class="text-label-sm font-label-sm text-on-surface-variant">07:45</span>
+</div>
+<p class="text-on-surface-variant text-body-md mt-xs">Melakukan <span class="text-primary font-semibold">Absen Masuk</span></p>
+</div>
+</div>
+<!-- Activity Item 3 -->
+<div class="bg-white p-md rounded-xl shadow-[0px_2px_4px_rgba(0,0,0,0.05)] border border-outline-variant flex gap-md items-start opacity-70">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex-shrink-0 flex items-center justify-center">
+<img class="w-full h-full object-cover rounded-full" data-alt="Professional portrait of a warehouse supervisor, wearing high-visibility vest over casual shirt, industrial setting, soft lighting, sharp focus, authentic expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIXL7RinGYceiiBWnDqGBLOaCsBtIcFhuHoZwMUd_6Y0Um7H7-VJcHLFcDjlhIW8WdP2ug0CSQx12YYJjjf4IgEtCyT1vkoOCZB5u_dQ2DZUr4KVmS_ChJ0rT8sZR4gfZqqGt5nRwMli8DBthH80rFrxOEupB1JvZjmuijycX47xEijawMOM9ot06hS6UlMULeUZAwGBXqhlUhG9oASYl84_kYL35AHbY7Nhxq81BS9VkxlAs3WOLK_uQvdYPBk5jWdpTiR6P3pFQ"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="text-on-surface font-label-lg text-label-lg">Agus <span class="font-normal text-on-surface-variant text-body-md">(Supervisor)</span></p>
+<span class="text-label-sm font-label-sm text-on-surface-variant">07:30</span>
+</div>
+<p class="text-on-surface-variant text-body-md mt-xs">Melakukan <span class="text-secondary font-semibold">Izin Terlambat</span></p>
+</div>
+</div>
+</div>
+</section>
+<!-- Geo-status context -->
+<div class="fixed bottom-24 left-margin-mobile right-margin-mobile bg-surface-container-lowest border border-outline-variant rounded-full py-sm px-md flex items-center justify-center gap-sm shadow-lg z-40">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Sistem pemantauan geofence aktif</p>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface-container-lowest shadow-[0_-4px_12px_rgba(0,0,0,0.05)] rounded-t-xl h-20">
+<!-- Beranda (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 scale-90 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-label-sm font-label-sm">Beranda</span>
+</a>
+<!-- Karyawan -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">badge</span>
+<span class="text-label-sm font-label-sm">Karyawan</span>
+</a>
+<!-- Laporan -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-label-sm font-label-sm">Laporan</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.add('ring-2', 'ring-primary/20');
+                setTimeout(() => {
+                    card.classList.remove('ring-2', 'ring-primary/20');
+                }, 400);
+            });
+        });
+
+        // Pull to refresh effect simulation
+        let startY;
+        document.addEventListener('touchstart', e => {
+            startY = e.touches[0].pageY;
+        });
+        document.addEventListener('touchend', e => {
+            const endY = e.changedTouches[0].pageY;
+            if (window.scrollY === 0 && endY > startY + 100) {
+                // Refresh logic would go here
+                document.body.style.opacity = '0.5';
+                setTimeout(() => {
+                    document.body.style.opacity = '1';
+                }, 500);
+            }
+        });
+    </script>
+</body></html>
