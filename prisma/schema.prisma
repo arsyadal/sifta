@@ -1,0 +1,83 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Company {
+  id        String     @id @default(uuid())
+  name      String
+  createdAt DateTime   @default(now())
+  branches  Branch[]
+  employees Employee[]
+}
+
+model Branch {
+  id                    String          @id @default(uuid())
+  companyId             String
+  company               Company         @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  name                  String
+  latitude              Float
+  longitude             Float
+  geofenceRadiusMeters  Int             @default(20)
+  shifts                ShiftSchedule[]
+}
+
+model Employee {
+  id                 String           @id @default(uuid())
+  companyId          String
+  company            Company          @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  name               String
+  role               String
+  phoneNumber        String           @unique
+  hourlyRate         Float
+  bankName           String
+  bankAccountNumber  String
+  avatar             String?
+  status             String           @default("aktif") // "aktif" | "nonaktif"
+  attendances        Attendance[]
+  cashoutRequests    CashoutRequest[]
+  shifts             ShiftSchedule[]
+  createdAt          DateTime         @default(now())
+}
+
+model ShiftSchedule {
+  id                String       @id @default(uuid())
+  employeeId        String
+  employee          Employee     @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  branchId          String
+  branch            Branch       @relation(fields: [branchId], references: [id], onDelete: Cascade)
+  date              String       // YYYY-MM-DD
+  expectedClockIn   String       // HH:MM
+  expectedClockOut  String       // HH:MM
+  shiftName         String       // e.g. "Shift Pagi", "Shift Malam", "Libur"
+  status            String       @default("scheduled") // "scheduled" | "completed" | "absent" | "today" | "libur"
+  attendances       Attendance[]
+}
+
+model Attendance {
+  id                 String         @id @default(uuid())
+  shiftScheduleId    String
+  shiftSchedule      ShiftSchedule  @relation(fields: [shiftScheduleId], references: [id], onDelete: Cascade)
+  employeeId         String
+  employee           Employee       @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  clockIn            DateTime       @default(now())
+  clockOut           DateTime?
+  clockInLat         Float?
+  clockInLng         Float?
+  clockInPhotoUrl    String?
+  isFakeGpsDetected  Boolean        @default(false)
+}
+
+model CashoutRequest {
+  id               String   @id @default(uuid())
+  employeeId       String
+  employee         Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  amount           Float
+  status           String   @default("pending") // "pending" | "approved" | "disbursed" | "rejected"
+  paymentReference String?
+  requestedAt      DateTime @default(now())
+}
